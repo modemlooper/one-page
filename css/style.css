@@ -247,7 +247,7 @@ hr {
 	font-size: .8em;
 }
 /* Portfolio Section */
-#portfolio {
+#portfolio, #blog {
 	padding: 80px 0;
 	background: #ffffff; /* Old browsers */
 	background: -moz-linear-gradient(top, #ffffff 0%, #f4f5f6 49%, #ffffff 100%); /* FF3.6+ */
