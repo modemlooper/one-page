@@ -24,7 +24,8 @@
 <link rel="stylesheet" type="text/css" href="css/prettyPhoto.css">
 <link href='http://fonts.googleapis.com/css?family=Lato:400,700,900,300' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800,600,300' rel='stylesheet' type='text/css'>
-<script type="text/javascript" src="js/modernizr.custom.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -97,16 +98,26 @@
     </div>
     <div class="row">
       <div class="blog-items">
+
+        <div style="width:24px; margin: 0 auto;">
+            <div class="fa fa-circle-o-notch fa-spin" style="font-size:24px;"></div>
+        </div>
+
+      </div>
+      <script id="entry-template" type="text/x-handlebars-template">
+          {{#each posts}}
           <div class="col-sm-6 col-md-3 col-lg-3">
             <div class="blog-item">
-              <div class="hover-bg"> <a href="img/portfolio/01-large.jpg" title="Project description" rel="prettyPhoto">
+              <div class="hover-bg"> <a href="{{better_featured_image.media_details.sizes.large.source_url}}" title="Project description" rel="prettyPhoto">
                 <div class="hover-text">
-                  <h4>Project Title</h4>
-                  <small>Web Design</small> </div>
-                <img src="img/portfolio/01-small.jpg" class="img-responsive" alt="Project Title"> </a> </div>
+                  <h4>{{title.rendered}}</h4>
+                </div>
+                <img src="{{better_featured_image.media_details.sizes.thumbnail.source_url}}" class="img-responsive" alt="Project Title" style="width:100%;"> </a> </div>
             </div>
           </div>
-      </div>
+          {{/each}}
+      </script>
+
     </div>
   </div>
 </div>
@@ -280,5 +291,6 @@
 <script type="text/javascript" src="js/jqBootstrapValidation.js"></script>
 <script type="text/javascript" src="js/contact_me.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="js/api.js"></script>
 </body>
 </html>
