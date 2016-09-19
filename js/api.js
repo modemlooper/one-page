@@ -24,6 +24,11 @@ window.onePage = {};
 
             $.ajax({
                url: 'http://modemlooper.me/wp-json/wp/v2/posts?_embed',
+			   data: {
+				   	filter: {
+					   posts_per_page: 8,
+					}
+			   },
                dataType: 'json',
                success: function( data ) {
 
@@ -31,7 +36,7 @@ window.onePage = {};
                      posts: data
                  }
 
-                 var html = template(context);
+                 var html = template( context );
                  $( '.blog-items' ).html( html );
 
                },
