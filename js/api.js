@@ -18,33 +18,42 @@ window.onePage = {};
 		// Combine all events.
 		that.bindEvents = function() {
 
-            var source   = $( '#entry-template' ).html();
-            var template = Handlebars.compile( source );
-            var context;
+			that.getPosts();
 
-            $.ajax({
-               url: 'http://modemlooper.me/wp-json/wp/v2/posts?_embed',
+        }
+
+		that.getPosts = function() {
+
+			var source   = $( '#entry-template' ).html();
+			var template = Handlebars.compile( source );
+			var context;
+
+			$.ajax({
+			   url: 'http://modemlooper.me/wp-json/wp/v2/posts?_embed',
 			   data: {
-				   	filter: {
+					filter: {
 					   posts_per_page: 8,
 					}
 			   },
-               dataType: 'json',
-               success: function( data ) {
+			   dataType: 'json',
+			   success: function( data ) {
 
-                 context = {
-                     posts: data
-                 }
+				 context = {
+					 posts: data
+				 }
 
-                 var html = template( context );
-                 $( '.blog-items' ).html( html );
+				 var html = template( context );
+				 $( '.blog-items' ).html( html );
 
-               },
-               type: 'GET'
-            });
+			   },
+			   type: 'GET'
+			});
 
+		}
 
-        }
+		that.singlePost = function() {
+
+		}
 
 
 		// Engage!

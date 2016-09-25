@@ -695,6 +695,22 @@ header .intro-text {
 }
 }
 
+.load-more {
+	width: 400px;
+	margin: 40px auto;
+	padding: 10px;
+	display: block;
+	text-align: center;
+	border-radius: 4px;
+	color: #7b7b7b;
+	background-color: #f6f6f6;
+}
+
+.load-more:hover {
+	color: #6c6c6c;
+	background-color: #f4f1f1;
+}
+
 @media(min-width:992px) {
 #here-me h1 {
 	margin: 10px 0 0px;
