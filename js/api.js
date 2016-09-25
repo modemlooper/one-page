@@ -12,6 +12,8 @@ window.onePage = {};
 			that.$c = {
 				window: $( window ),
 				body: $( 'body' ),
+				site_url: 'http://modemlooper.me',
+				data: [],
 			};
 		}
 
@@ -20,16 +22,27 @@ window.onePage = {};
 
 			that.getPosts();
 
+			that.$c.body.on( 'click', '.blog-item a', function( e ) {
+				that.singlePost( $( this ).data('id') );
+				return false;
+			});
+
+			that.$c.body.on( 'click', 'span.close-modal', function( e ) {
+				$( this ).parent().parent().remove();
+				$('body').removeClass('modal-open');
+				return false;
+			});
+
         }
 
 		that.getPosts = function() {
 
-			var source   = $( '#entry-template' ).html();
+			var source   = $( '#posts-template' ).html();
 			var template = Handlebars.compile( source );
 			var context;
 
 			$.ajax({
-			   url: 'http://modemlooper.me/wp-json/wp/v2/posts?_embed',
+			   url: that.$c.site_url + '/wp-json/wp/v2/posts?_embed',
 			   data: {
 					filter: {
 					   posts_per_page: 8,
@@ -37,6 +50,8 @@ window.onePage = {};
 			   },
 			   dataType: 'json',
 			   success: function( data ) {
+
+				 that.$c.data = data;
 
 				 context = {
 					 posts: data
@@ -51,7 +66,29 @@ window.onePage = {};
 
 		}
 
-		that.singlePost = function() {
+		that.singlePost = function( id ) {
+
+			var source   = $( '#single-template' ).html();
+			var template = Handlebars.compile( source );
+			var context;
+
+			var post = $.grep( that.$c.data, function(e){ return e.id === id; });
+
+			if ( post.length == 0 ) {
+			  // not found
+			} else if ( post.length == 1 ) {
+
+			  context = {
+				  title: post[0].title.rendered,
+				  content: post[0].content.rendered,
+			  }
+
+			  $('body').addClass('modal-open');
+
+			  var html = template( context );
+			  $( 'body' ).append( html );
+
+			}
 
 		}
 

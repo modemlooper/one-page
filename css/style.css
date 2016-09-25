@@ -695,6 +695,10 @@ header .intro-text {
 }
 }
 
+.blog-item a {
+	display: block;
+}
+
 .load-more {
 	width: 400px;
 	margin: 40px auto;
@@ -709,6 +713,66 @@ header .intro-text {
 .load-more:hover {
 	color: #6c6c6c;
 	background-color: #f4f1f1;
+}
+
+.post-modal {
+	position: fixed;
+	z-index: 9999;
+	padding: 0px;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+	margin: 0;
+	background-color: rgba(0, 0, 0, 0.95);
+	color: #ffffff;
+}
+
+.post-modal-header {
+	height: 44px;
+	background-color: #7bc3d1;
+}
+
+.post-modal-wrap {
+	overflow: scroll;
+	height: 92%;
+}
+
+.post-modal-content {
+	padding: 20px 20px 40px 20px;
+}
+
+.post-modal a {
+	color: #7bc3d1;
+}
+
+span.close-modal {
+	position: absolute;
+	right: 15px;
+	top: 7px;
+	font-weight: 800;
+	font-size: 20px;
+	cursor: pointer;
+}
+
+div.emb-slider {
+	display: none;
+}
+
+.post-modal h1 {
+	font-size: 24px;
+	margin-bottom: 20px;
+}
+
+.post-modal h2 {
+	color: #7bc3d1;
+}
+
+body.modal-open {
+    overflow: hidden;
 }
 
 @media(min-width:992px) {
